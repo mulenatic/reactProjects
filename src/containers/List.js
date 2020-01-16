@@ -5,7 +5,7 @@ class List extends Component {
     constructor() {
 	super();
 	this.state = { data: [], loading: true, };
-    };
+    }
 
     async componentDidMount() {
 	const movies = await fetch('../../assets/data.json');
@@ -18,7 +18,7 @@ class List extends Component {
 		loading: false
 	    });
 	}
-    };
+    }
     
     render() {
 	const { data, loading } = this.state;
@@ -28,9 +28,9 @@ class List extends Component {
 	}
 
 	return (
-	    <div class='row'>
+	    <div className='row'>
 	      {data.map( movie =>
-	      <div class='col-sm-2'>
+	      <div className='col-sm-2'>
 		<Card key={ movie.id } movie={ movie } />
 	      </div>)}
 	    </div>
