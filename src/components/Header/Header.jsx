@@ -1,5 +1,8 @@
 import React from 'react';
 import './Header.css';
+import PropTypes from 'prop-types';
+
+
 
 const Header = ({logo}) => {
     return (
@@ -20,5 +23,8 @@ const Header = ({logo}) => {
     );
 };
 
+Header.propTypes = {
+    logo: PropTypes.string
+};
 
 export default Header;
