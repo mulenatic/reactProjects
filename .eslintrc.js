@@ -11,7 +11,11 @@ module.exports = {
 	"sourceType": "module"
     },
     "plugins": [
-	"react"
+	"react", "smarter-tabs"
     ],
+    "rules": {
+	"no-mixed-spaces-and-tabs":  "off",
+	"smarter-tabs/smarter-tabs": "warn"
+    },
     "extends": ["eslint:recommended", "plugin:react/recommended"]
 };

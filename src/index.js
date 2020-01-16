@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import List from './containers/List';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const App = (props) => {
+const App = () => {
     return (
 	<div className='container-fluid'>
 	  <nav className="navbar sticky-top navbar-light bg-dark">
