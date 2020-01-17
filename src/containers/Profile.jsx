@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-const propTypes = {};
-
-const defaultProps = {};
+import Link from '../components/Link/Link';
+import './Profile.css';
 
 class Profile extends React.Component {
     constructor() {
@@ -36,23 +33,20 @@ class Profile extends React.Component {
 	}
 	
 	return (
-	    <div>
+	    <div className='Profile-container'>
+	      <img className='Profile-avatar' src={data.avatar_url} alt='avatar'/>
 	      <ul>
-		<li>avatar_url: {data.avatar_url}</li>
-		<li>html_url: {data.html_url}</li>
-		<li>repos_url: {data.repos_url}</li>
-		<li>name: {data.name}</li>
-		<li>company: {data.company}</li>
-		<li>location: {data.location}</li>
-		<li>email: {data.email}</li>
-		<li>bio: {data.bio}</li>
+		<li><strong>html_url: </strong> <Link url={data.html_url} title="Github URL"/></li>
+		<li><strong>repos_url:</strong> {data.repos_url}</li>
+		<li><strong>name:</strong> {data.name}</li>
+		<li><strong>company:</strong> {data.company}</li>
+		<li><strong>location:</strong> {data.location}</li>
+		<li><strong>email:</strong> {data.email}</li>
+		<li><strong>bio:</strong> {data.bio}</li>
 	      </ul>
 	    </div>
 	);
     }
 };
-
-Profile.propTypes = propTypes;
-Profile.defaultProps = defaultProps;
 
 export default Profile;
