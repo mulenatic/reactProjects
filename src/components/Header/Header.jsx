@@ -1,8 +1,7 @@
 import React from 'react';
 import './Header.css';
 import PropTypes from 'prop-types';
-
-
+import Link from '../Link/Link';
 
 const Header = ({logo}) => {
     return (
@@ -11,14 +10,7 @@ const Header = ({logo}) => {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-            Learn React
-          </a>
+	  <Link url="https://reactjs.org" title="Learn React"/>
 	</header>
     );
 };
