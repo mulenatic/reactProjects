@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Link.css';
+import styled from 'styled-components';
+
+const InnerLink = styled.a`
+color: #61dafb;
+`;
 
 const propTypes = {
     url: PropTypes.string,
@@ -10,14 +14,13 @@ const propTypes = {
 const Link = ({url, title}) => {
 
     return (
-        <a
-	  className="App-link"
+	<InnerLink
 	  href={url}
 	  target="_blank"
 	  rel="noopener noreferrer"
           >
           {title}
-	</a>
+	</InnerLink>
     )
 
 };
