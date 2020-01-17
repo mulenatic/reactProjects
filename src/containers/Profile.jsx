@@ -1,7 +1,15 @@
 import React from 'react';
 import Link from '../components/Link/Link';
-import './Profile.css';
 import List from '../components/List/List';
+import styled from 'styled-components';
+
+const ProfileWrapper = styled.div`
+ width: 50%;
+ margin: 10px auto;
+ `;
+const Avatar = styled.img`
+ width: 150px;
+ `;
 
 class Profile extends React.Component {
     constructor() {
@@ -44,10 +52,10 @@ class Profile extends React.Component {
 	];
 	
 	return (
-	    <div className='Profile-container'>
-	      <img className='Profile-avatar' src={data.avatar_url} alt='avatar'/>
+	    <ProfileWrapper>
+	      <Avatar src={data.avatar_url} alt='avatar'/>
 	      <List items={items} />
-	    </div>
+	    </ProfileWrapper>
 	);
     }
 };
