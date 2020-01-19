@@ -20,7 +20,7 @@ const Tickets = ({loading, data, error}) => (
 
     <TicketsWrapper>
       {(loading || error) && <Alert>{loading ? ' Loding...' : error }</Alert>}
-      {data.map(ticket => <Ticket key={ticket.id} ticket={ticket} />)}
+      {data.map(ticket => <Ticket key={ticket.id} ticket={ticket} marginRight />)}
     </TicketsWrapper>
 
 

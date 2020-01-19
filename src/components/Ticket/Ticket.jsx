@@ -8,6 +8,7 @@ padding: 20px;
 border-radius: 20px;
 &:not(:last-child) {
 margin-bottom: 5%;
+margin-right: ${props => !!props.marginRight ? '1%' : '0'};
 }
 `;
 
@@ -18,8 +19,8 @@ margin: 0px;
 const Body = styled.p`
 width: 100%;
 `;
-const Ticket = ({ ticket }) => (
-    <TicketWrapper>
+const Ticket = ({ marginRight, ticket }) => (
+    <TicketWrapper marginRight={marginRight}>
       <Title>{ticket.title}</Title>
       <Body>{ticket.body}</Body>
     </TicketWrapper>
