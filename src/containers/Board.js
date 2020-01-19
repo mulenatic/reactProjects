@@ -14,12 +14,32 @@ const BoardWrapper = styled.div`
   }
 `;
 
-const Board = ({lanes, loading, error, data }) => (
+class Board extends React.Component {
+
+    constructor() {
+	super();
+	this.state = {
+	    tickets: [],
+	};
+    }
+
+    componentDidUpdate(prevProps) {
+	if(prevProps.data !== this.props.data ) {
+	    this.setState({ tickets: this.props.data });
+	}
+    }
+    
+    render () {
+	const {lanes, loading, error } = this.props;
+
+	return (
 	<BoardWrapper>
 	{lanes.map(lane =>
-		   <Lane key={lane.id} title={lane.title} loading={loading} error={error} tickets={data.filter(ticket => ticket.lane === lane.id)} /> )}
-    </BoardWrapper>
-);
+		   <Lane key={lane.id} title={lane.title} loading={loading} error={error} tickets={this.state.tickets.filter(ticket => ticket.lane === lane.id)} /> )}
+	    </BoardWrapper>
+	);
+    }
+}
 
 
 export default withDataFetching(Board);
