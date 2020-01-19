@@ -28,6 +28,10 @@ class Board extends React.Component {
 	    this.setState({ tickets: this.props.data });
 	}
     }
+
+    onDragStart = (e, id) => {
+	e.dataTransfer.setData('id', id);
+    }
     
     render () {
 	const {lanes, loading, error } = this.props;
@@ -35,7 +39,15 @@ class Board extends React.Component {
 	return (
 	<BoardWrapper>
 	{lanes.map(lane =>
-		   <Lane key={lane.id} title={lane.title} loading={loading} error={error} tickets={this.state.tickets.filter(ticket => ticket.lane === lane.id)} /> )}
+		   <Lane
+		   key={lane.id}
+		   title={lane.title}
+		   loading={loading}
+		   error={error}
+		   onDragStart={this.onDragStart}
+		   tickets={this.state.tickets.filter(ticket => ticket.lane === lane.id)}
+		   />
+		  )}
 	    </BoardWrapper>
 	);
     }
