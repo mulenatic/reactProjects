@@ -20,6 +20,21 @@ const CardLink = styled(Link)`
  color: inherit;
  `;
 
+const PaginationBar = styled.div`
+ width: 100%;
+ display: flex;
+ justify-content: space-between;
+ `;
+
+const PaginationLink = styled(Link)`
+ padding: 1%;
+ background: lightBlue;
+ color: white;
+ text-decoration: none
+ border-radius: 5px;
+ `;
+
+
 const ROOT_API = 'https://api.stackexchange.com/2.2/';
 
 class Feed extends Component {
@@ -58,7 +73,9 @@ class Feed extends Component {
     }
 
     render() {
-	const { data, loading, error } = this.state;
+	const { data, page, loading, error } = this.state;
+	const { match } = this.props;
+	
 
 	if (loading || error) {
 	    return <Alert>{loading ? 'Loading...' : error}</Alert>;
@@ -70,8 +87,12 @@ class Feed extends Component {
 		  <CardLink key={item.question_id} to={`/questions/${item.question_id}`}>
 		    <Card data={item} />
 		  </CardLink>
-              ))}
-	    </FeedWrapper>
+	      ))}
+		<PaginationBar>
+		{page > 1 && <PaginationLink to={`${match.url}?page=${page-1}`}>Previous</PaginationLink>}
+	    {data.has_more && <PaginationLink to={`${match.url}?page=${page+1}`}>Next</PaginationLink>}
+	    </PaginationBar>
+		</FeedWrapper>
 	);
     }
 }
