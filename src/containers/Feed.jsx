@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card/Card';
 import { Link } from 'react-router-dom';
+import queryString from 'query-string';
 
 const FeedWrapper = styled.div`
   display: flex;
@@ -22,19 +23,23 @@ const CardLink = styled(Link)`
 const ROOT_API = 'https://api.stackexchange.com/2.2/';
 
 class Feed extends Component {
-    constructor() {
-	super();
+    constructor(props) {
+	super(props);
+	const query = queryString.parse(props.location.search);
+	
 	this.state = {
 	    data: [],
+	    page: (query.page) ? parseInt(query.page) : 1,
 	    loading: true,
 	    error: '',
 	};
     }
 
     async componentDidMount() {
+	const { page } = this.state;
 	try {
 	    const data = await fetch(
-		`${ROOT_API}questions?order=desc&sort=activity&tagged=reactjs&site=stackoverflow`,
+		`${ROOT_API}questions?order=desc&sort=activity&tagged=reactjs&site=stackoverflow${(page) ? `&page=${page}` : ''}`,
 	    );
 	    const dataJSON = await data.json();
 
