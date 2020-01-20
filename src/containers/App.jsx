@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from '../components/Header/Header';
 import Feed from './Feed';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Question from '../components/Question/Question';
 
 const GlobalStyle = createGlobalStyle`
@@ -23,20 +23,23 @@ const AppWrapper = styled.div`
 
 class App extends Component {
     
-  render() {
-    return (
-      <>
-        <GlobalStyle />
-        <AppWrapper>
-          <Header />
-	  <Router>
-            <Route exact path='/' component={Feed} />
-	    <Route path='/questions/:id' component={Question} />
-	  </Router>
-        </AppWrapper>
-      </>
-    );
-  }
+    render() {
+	return (
+	    <>
+              <GlobalStyle />
+              <AppWrapper>
+		<Header />
+		<Router>
+		  <Switch>
+		    <Route exact path='/' component={Feed} />
+		    <Route path='/questions/:id' component={Question} />
+	    	    <Route path='/questions' component={Feed} />
+		  </Switch>
+		</Router>
+              </AppWrapper>
+	    </>
+	);
+    }
 }
 
 export default App;
