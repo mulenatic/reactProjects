@@ -22,6 +22,7 @@ const AppWrapper = styled.div`
 `;
 
 class App extends Component {
+    
   render() {
     return (
       <>

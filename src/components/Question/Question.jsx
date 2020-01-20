@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Card from '../Card/Card';
 
 const QuestionWrapper = styled.div`
 display: flex;
@@ -11,6 +12,8 @@ const Alert = styled.div`
 text-align: center;
 `;
 
+const ROOT_API = 'https://api.stackexchange.com/2.2/';
+
 class Question extends Component {
     constructor() {
 	super();
@@ -21,6 +24,26 @@ class Question extends Component {
 	};
     }
 
+    async componentDidMount() {
+	const { match } = this.props;
+	try {
+	    const data = await fetch(`${ROOT_API}questions/${match.params.id}?site=stackoverflow`);
+	    const dataJSON = await data.json();
+
+	    if (dataJSON) {
+		this.setState({
+		    data: dataJSON,
+		    loading: false,
+		});
+	    }
+	} catch(error) {
+	    this.setState({
+		loading: true,
+		error: error.message,
+	    })
+	}
+    }
+
     render() {
 	const {data, loading, error} = this.state;
 
@@ -29,7 +52,9 @@ class Question extends Component {
 	}
 
 	return (
-	    <QuestionWrapper></QuestionWrapper>
+	    <QuestionWrapper>
+	      <Card key={data.items[0].question_id} data={data.items[0]} />
+	    </QuestionWrapper>
 	)
     }
 }
