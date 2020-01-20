@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import Header from '../components/Header/Header';
 import Feed from './Feed';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Question from '../components/Question/Question';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -29,6 +30,7 @@ class App extends Component {
           <Header />
 	  <Router>
             <Route exact path='/' component={Feed} />
+	    <Route path='/question/:id' component={Question} />
 	  </Router>
         </AppWrapper>
       </>
