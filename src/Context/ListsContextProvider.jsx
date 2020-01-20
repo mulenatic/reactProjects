@@ -9,6 +9,4 @@ const ListsContextProvider = ({ children, data }) => (
     </ListsContext.Provider>
 );
 
-export withDataFetching({
-    dataSource: 'https://my-json-server.typicode.com/PacktPublishing/React-Projects/lists',
-})(ListsContextProvider);
+export default withDataFetching({dataSource: 'https://my-json-server.typicode.com/PacktPublishing/React-Projects/lists',})(ListsContextProvider);
