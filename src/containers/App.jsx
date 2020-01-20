@@ -31,7 +31,7 @@ class App extends Component {
           <Header />
 	  <Router>
             <Route exact path='/' component={Feed} />
-	    <Route path='/question/:id' component={Question} />
+	    <Route path='/questions/:id' component={Question} />
 	  </Router>
         </AppWrapper>
       </>
