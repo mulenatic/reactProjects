@@ -29,11 +29,15 @@ const App = () => (
       <AppWrapper>
 	<Header />
 	<ListsContextProvider>
-	  <Switch>
-            <Route exact path='/' component={Lists} />
-            <Route path='/list/:id/new' component={Form} />
-            <Route path='/list/:id' component={List} />
-	  </Switch>
+	  <ListsContext.Consumer>
+	    {({ lists }) => (
+		<Switch>
+		  <Route exact path='/' render={props => lists && <Lists lists={lists} {...props} /> }/>
+		  <Route path='/list/:id/new' component={Form} />
+		  <Route path='/list/:id' component={List} />
+		</Switch>
+	    )}
+	  </ListsContext.Consumer>
 	</ListsContextProvider>
       </AppWrapper>
     </>
