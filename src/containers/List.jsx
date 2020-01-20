@@ -16,28 +16,30 @@ const Alert = styled.span`
   text-align: center;
 `;
 
-const List = ({ data, loading, error, match, history }) => {
-  const items =
-    data && data.filter(item => item.listId === parseInt(match.params.id));
+const List = ({ data, loading, error, lists, match, history }) => {
+    const items =
+	  data && data.filter(item => item.listId === parseInt(match.params.id));
+    const list = lists && lists.find(list => list.id === parseInt(match.params.id));
 
-  return !loading && !error ? (
-    <>
-      {history && (
-        <SubHeader
-          goBack={() => history.goBack()}
-          openForm={() => history.push(`${match.url}/new`)}
-        />
-      )}
-      <ListItemWrapper>
-        {items && items.map(item => <ListItem key={item.id} data={item} />)}
-      </ListItemWrapper>
-    </>
-  ) : (
-    <Alert>{loading ? 'Loading...' : error}</Alert>
-  );
+    return !loading && !error ? (
+	<>
+	  {history && list && (
+              <SubHeader
+		goBack={() => history.goBack()}
+		title={list.title}
+		openForm={() => history.push(`${match.url}/new`)}
+		/>
+	  )}
+	    <ListItemWrapper>
+            {items && items.map(item => <ListItem key={item.id} data={item} />)}
+	</ListItemWrapper>
+	    </>
+    ) : (
+	<Alert>{loading ? 'Loading...' : error}</Alert>
+    );
 };
 
 export default withDataFetching({
-  dataSource:
+    dataSource:
     'https://my-json-server.typicode.com/pranayfpackt/-React-Projects/items',
 })(List);
