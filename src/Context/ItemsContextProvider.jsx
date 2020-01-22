@@ -38,7 +38,7 @@ async function fetchData(dataSource) {
 	    return await ({ data: dataJSON, error: false });
 	}
     } catch(error) {
-	reutrn ({ data: false, error: error.message });
+	return ({ data: false, error: error.message });
     }
 };
 
